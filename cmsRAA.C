@@ -25,7 +25,7 @@
 #endif
 void cmsRAA(int version = 6)
 {
-  double mymarkersize = 1.5;
+  double mymarkersize = 1.;
   bool bDo2PadZoo = true;
   
   //----------------------------------------- charged hadrons
@@ -89,28 +89,28 @@ void cmsRAA(int version = 6)
   TGraphErrors *pgRaa_jet          = new TGraphErrors(11, ptBins_jet, raa_jet, ptError_jet, raaStat_jet);
   TGraphAsymmErrors *pgRaaSyst_jet = new TGraphAsymmErrors(11, ptBins_jet, raa_jet, ptSystXlow_jet,ptSystXhigh_jet,raaSyst_jet,raaSyst_jet);
   pgRaa_jet->SetName("pgRaa_jet");
-  pgRaa_jet->SetMarkerStyle(20);
+  pgRaa_jet->SetMarkerStyle(22);
   pgRaa_jet->SetMarkerSize(1.);
   
   //systm error
   pgRaaSyst_jet->SetName("pgRaaSyst_jet");
-  pgRaaSyst_jet->SetFillColor(TColor::GetColor("#00FFFF"));
+  pgRaaSyst_jet->SetFillColor(TColor::GetColor("#00FF60"));
 
   //----------------------------------------- b-jet RAA
-  double ptBins_bjet[]   = {108.3}; 
-  double ptError_bjet[]  = {0.0};
+  double ptBins_bjet[5]   = {85,100,120,150,210}; 
+  double ptError_bjet[5]  = {0,0,0,0,0};
   
-  double raa_bjet[]      = {0.478}; 
-  double raaStat_bjet[]  = {0.188};
-  double raaSyst_bjet[]  = {0.413};
+  double raa_bjet[5]      = {0.3927,0.3277,0.4598,0.4034,0.4214}; 
+  double raaStat_bjet[5]  = {0.0179,0.0178,0.0374,0.0625,0.1589};
+  double raaSyst_bjet[5]  = {0.0917,0.0923,0.1272,0.1529,0.2771};
 
-  double ptSystXlow_bjet[]      = {8.3};
-  double ptSystXhigh_bjet[]     = {11.7};
+  double ptSystXlow_bjet[5]      = {5,10,10,20,40};
+  double ptSystXhigh_bjet[5]     = {5,10,10,20,40};
   
-  TGraphErrors *pgRaa_bjet          = new TGraphErrors(1, ptBins_bjet, raa_bjet, ptError_bjet, raaStat_bjet);
-  TGraphAsymmErrors *pgRaaSyst_bjet = new TGraphAsymmErrors(1, ptBins_bjet, raa_bjet, ptSystXlow_bjet,ptSystXhigh_bjet,raaSyst_bjet,raaSyst_bjet);
+  TGraphErrors *pgRaa_bjet          = new TGraphErrors(5, ptBins_bjet, raa_bjet, ptError_bjet, raaStat_bjet);
+  TGraphAsymmErrors *pgRaaSyst_bjet = new TGraphAsymmErrors(5, ptBins_bjet, raa_bjet, ptSystXlow_bjet,ptSystXhigh_bjet,raaSyst_bjet,raaSyst_bjet);
   pgRaa_bjet->SetName("pgRaa_bjet");
-  pgRaa_bjet->SetMarkerStyle(kFullCircle);
+  pgRaa_bjet->SetMarkerStyle(21);
   pgRaa_bjet->SetMarkerColor(kRed);
   pgRaa_bjet->SetMarkerSize(1.);
   
@@ -133,27 +133,35 @@ void cmsRAA(int version = 6)
   TGraphErrors *pgRaa_photon          = new TGraphErrors(5, ptBins_photon, raa_photon, ptError_photon, raaStat_photon);
   TGraphAsymmErrors *pgRaaSyst_photon = new TGraphAsymmErrors(5, ptBins_photon, raa_photon, ptSystXlow_photon,ptSystXhigh_photon,raaSyst_photon,raaSyst_photon);
   pgRaa_photon->SetName("pgRaa_photon");
-  pgRaa_photon->SetMarkerStyle(kFullCircle);
+  pgRaa_photon->SetMarkerStyle(23);
   pgRaa_photon->SetMarkerSize(1.);
   //systm error
   pgRaaSyst_photon->SetName("pgRaaSyst_photon");
   pgRaaSyst_photon->SetFillColor(TColor::GetColor("#ffff00"));
   
   //----------------------------------------- Z 
-  double ptBins_z[]   = {91.19}; 
+  double ptBins_z[]   = {91.19};
+  //double ptBins_z[7]   = {2.5,7.5,15,25,35,45,75};
   double ptError_z[]  = {0.0};
+  //double ptError_z[7]  = {0.0};
   
-  double raa_z[]      = {0.95}; 
-  double raaStat_z[]  = {0.034};
-  double raaSyst_z[]  = {0.13};
-  double ptSystXlow_z[]      = {2.5};
-  double ptSystXhigh_z[]     = {2.5};
+  double raa_z[]      = {1.06}; 
+  double raaStat_z[]  = {0.05};
+  double raaSyst_z[]  = {0.08};
+  double ptSystXlow_z[]      = {4};
+  double ptSystXhigh_z[]     = {4};
+  //double raa_z[7]        = {0.88,1.20,1.00,1.35,1.11,1.35,0.78}; 
+  //double raaStat_z[7]    = {0.09,0.13,0.11,0.22,0.27,0.42,0.20};
+  //double raaSyst_z[7]    = {0.06,0.08,0.07,0.09,0.08,0.09,0.05};
+  //double ptSystXlow_z[7] = {2.5,2.5,5,5,5,5,25};
+  //double ptSystXhigh_z[7] = {2.5,2.5,5,5,5,5,25};
 
   TGraphErrors *pgRaa_z          = new TGraphErrors(1, ptBins_z, raa_z, ptError_z, raaStat_z);
   TGraphAsymmErrors *pgRaaSyst_z = new TGraphAsymmErrors(1, ptBins_z, raa_z, ptSystXlow_z,ptSystXhigh_z,raaSyst_z,raaSyst_z);
   pgRaa_z->SetName("pgRaa_z");   pgRaa_z->SetMarkerStyle(kFullCircle);
   pgRaa_z->SetMarkerSize(1.);
-  
+  pgRaa_z->SetMarkerStyle(22);  
+
   //systm error
   pgRaaSyst_z->SetName("pgRaaSyst_z");
   pgRaaSyst_z->SetFillColor(TColor::GetColor("#ff8888"));
@@ -166,14 +174,15 @@ void cmsRAA(int version = 6)
   double raa_w[]      = {1.04}; 
   double raaStat_w[]  = {0.07};
   double raaSyst_w[]  = {0.12};
-  double ptSystXlow_w[]      = {2.5};
-  double ptSystXhigh_w[]     = {2.5};
+  double ptSystXlow_w[]      = {4};
+  double ptSystXhigh_w[]     = {4};
 
   TGraphErrors *pgRaa_w          = new TGraphErrors(1, ptBins_w, raa_w, ptError_w, raaStat_w);
   TGraphAsymmErrors *pgRaaSyst_w = new TGraphAsymmErrors(1, ptBins_w, raa_w, ptSystXlow_w,ptSystXhigh_w,raaSyst_w,raaSyst_w);
   pgRaa_w->SetName("pgRaa_w");
   pgRaa_w->SetMarkerStyle(kFullCircle);
-  pgRaa_w->SetMarkerSize(2.);
+  pgRaa_w->SetMarkerSize(1.);
+  pgRaa_w->SetMarkerStyle(21);
   
   //systm error
   pgRaaSyst_w->SetName("pgRaaSyst_w");
@@ -194,8 +203,8 @@ void cmsRAA(int version = 6)
   TGraphErrors *pgRaa_npjpsi          = new TGraphErrors(4, ptBins_npjpsi, raa_npjpsi, ptError_npjpsi, raaStat_npjpsi);
   TGraphAsymmErrors *pgRaaSyst_npjpsi = new TGraphAsymmErrors(4, ptBins_npjpsi, raa_npjpsi, ptSystXlow_npjpsi,ptSystXhigh_npjpsi,raaSyst_npjpsi,raaSyst_npjpsi);
   pgRaa_npjpsi->SetName("pgRaa_npjpsi");
-  pgRaa_npjpsi->SetMarkerStyle(kFullCircle);
-  pgRaa_npjpsi->SetMarkerSize(1.);
+  pgRaa_npjpsi->SetMarkerStyle(29);
+  pgRaa_npjpsi->SetMarkerSize(1.2);
   pgRaa_npjpsi->SetMarkerColor(kRed);
   
   //systm error
@@ -218,7 +227,7 @@ void cmsRAA(int version = 6)
   //------------------------ single pannel:
   
   TCanvas *pc = new TCanvas("pc","pc");
-  TH1 *phAxis = new TH1D("phAxis",";p_{T} [GeV];R_{AA}",1,0.9,300);
+  TH1 *phAxis = new TH1D("phAxis",";p_{T} (m_{T}) [GeV];R_{AA}",1,0.9,300);
   phAxis->GetYaxis()->CenterTitle(true);
   phAxis->SetMinimum(0.);
   phAxis->SetMaximum(2.5);
@@ -232,8 +241,8 @@ void cmsRAA(int version = 6)
   pgRaaSyst_h->Draw("2");
   pgRaaSyst_z->Draw("2");
   pgRaaSyst_w->Draw("2");
-  pgRaaSyst_jet->Draw("2");
   pgRaaSyst_bjet->Draw("2");
+  pgRaaSyst_jet->Draw("2");
   //nominal+stat
   // photon
   pgRaa_photon->Draw("P z");
@@ -241,19 +250,19 @@ void cmsRAA(int version = 6)
   pgRaa_w->Draw("P z");
   pgRaa_h->Draw("P z");
   pgRaa_npjpsi->Draw("P z");
-  pgRaa_jet->Draw("P z");
   pgRaa_bjet->Draw("P z");
+  pgRaa_jet->Draw("P z");
 
   TLine *line = new TLine(0.9,1,300,1);
   line->SetLineStyle(7);
   line->Draw();
-  box->Draw();
+  //box->Draw();
   // // legends and writings:
 
-  TLegend *leg = new TLegend(0.07,0.87,0.46,0.95,NULL,"brNDC");
+  TLegend *leg = new TLegend(0.05,0.87,0.39,0.95,NULL,"brNDC");
   leg->SetBorderSize(0);
   leg->SetTextFont(62);
-  leg->SetTextSize(0.028);
+  leg->SetTextSize(0.029);
   leg->SetLineColor(1);
   leg->SetLineStyle(1);
   leg->SetLineWidth(1);
@@ -265,7 +274,7 @@ void cmsRAA(int version = 6)
   //    entry=leg->AddEntry("hEtSIEIECorrected","","");
   //    entry=leg->AddEntry("hEtSIEIECorrected","#int L dt = 7-150 #mub^{-1}","");
 
-  TLegendEntry *entry=leg->AddEntry("hEtSIEIECorrected","CMS PRELIMINARY  PbPb #sqrt{s_{NN}} = 2.76 TeV  #int L dt = 7-150 #mub^{-1}","");
+  TLegendEntry *entry=leg->AddEntry("hEtSIEIECorrected","CMS  *PRELIMINARY  PbPb #sqrt{s_{NN}} = 2.76 TeV  #int L dt = 7-150 #mub^{-1}","");
   entry->SetLineWidth(1);
   
   
@@ -275,7 +284,7 @@ void cmsRAA(int version = 6)
   TLegend *leg_taa = new TLegend(0.15,0.5,0.5,0.55,NULL,"brNDC");
   leg_taa->SetBorderSize(0);
   leg_taa->SetTextFont(62);
-  leg_taa->SetTextSize(0.025);
+  leg_taa->SetTextSize(0.028);
   leg_taa->SetLineColor(1);
   leg_taa->SetLineStyle(1);
   leg_taa->SetLineWidth(1);
@@ -290,45 +299,45 @@ void cmsRAA(int version = 6)
   entry_taa->SetMarkerSize(1);
 
   // EWQ legend
-  TLegend *leg_ewq = new TLegend(0.35,0.75,0.8,0.85,NULL,"brNDC");
+  TLegend *leg_ewq = new TLegend(0.14,0.79,0.6,0.89,NULL,"brNDC");
   leg_ewq->SetBorderSize(0);
   leg_ewq->SetTextFont(62);
-  leg_ewq->SetTextSize(0.025);
+  leg_ewq->SetTextSize(0.028);
   leg_ewq->SetLineColor(1);
   leg_ewq->SetLineStyle(1);
   leg_ewq->SetLineWidth(1);
   leg_ewq->SetFillColor(19);
   leg_ewq->SetFillStyle(0);
-  TLegendEntry *entry_ewq=leg_ewq->AddEntry("raaz","Z  (0-100%) p_{T}^{#mu} > 20 GeV/c^{^{ }}    |y|<2","lpf");
+  TLegendEntry *entry_ewq=leg_ewq->AddEntry("raaz","*Z  (0-100%) |y| < 2","lpf");
   entry_ewq->SetFillColor(TColor::GetColor("#ff8888"));
   entry_ewq->SetFillStyle(1001);
   entry_ewq->SetLineColor(1);
   entry_ewq->SetLineWidth(1);
-  entry_ewq->SetMarkerStyle(kFullCircle);
+  entry_ewq->SetMarkerStyle(22);
   entry_ewq->SetMarkerSize(1.);
   
-  entry_ewq=leg_ewq->AddEntry("raaw","W  (0-100%)  p_{T}^{#mu} > 25 GeV/c^{^{ }} |#eta^{#mu}|<2.1","lpf");
+  entry_ewq=leg_ewq->AddEntry("raaw","W  (0-100%) p_{T}^{#mu} > 25 GeV/c^{^{ }}, |#eta^{#mu}| < 2.1","lpf");
   entry_ewq->SetFillColor(TColor::GetColor("#ff88ff"));
   entry_ewq->SetFillStyle(1001);
   entry_ewq->SetLineColor(1);
   entry_ewq->SetLineWidth(1);
-  entry_ewq->SetMarkerStyle(kFullCircle);
-  entry_ewq->SetMarkerSize(1.5);
+  entry_ewq->SetMarkerStyle(21);
+  entry_ewq->SetMarkerSize(1.);
   
-  entry_ewq=leg_ewq->AddEntry("raaphoton","Isolated photon  (0-10%)      |#eta|<1.44","lpf");
+  entry_ewq=leg_ewq->AddEntry("raaphoton","Isolated photon  (0-10%)  |#eta| < 1.44","lpf");
   entry_ewq->SetFillColor(TColor::GetColor("#ffff00"));
   entry_ewq->SetFillStyle(1001);
   entry_ewq->SetLineColor(1);
   entry_ewq->SetLineWidth(1);
-  entry_ewq->SetMarkerStyle(kFullCircle);
+  entry_ewq->SetMarkerStyle(23);
   entry_ewq->SetMarkerSize(1);
   
 
   // b and h
-  TLegend *leg_q = new TLegend(0.15,0.65,0.47,0.74,NULL,"brNDC");
+  TLegend *leg_q = new TLegend(0.14,0.72,0.6,0.79,NULL,"brNDC");
   leg_q->SetBorderSize(0);
   leg_q->SetTextFont(62);
-  leg_q->SetTextSize(0.025);
+  leg_q->SetTextSize(0.028);
   leg_q->SetLineColor(1);
   leg_q->SetLineStyle(1);
   leg_q->SetLineWidth(1);
@@ -336,7 +345,7 @@ void cmsRAA(int version = 6)
   leg_q->SetFillStyle(0);
 
 
-  TLegendEntry *entry_q=leg_q->AddEntry("raah","Charged particles^{^{ }} (0-5%)   |#eta|<1","lpf");
+  TLegendEntry *entry_q=leg_q->AddEntry("raah","Charged particles  (0-5%)  |#eta| < 1","lpf");
   entry_q->SetFillColor(TColor::GetColor("#33ccff"));
   entry_q->SetFillStyle(1001);
   entry_q->SetLineColor(1);
@@ -345,49 +354,49 @@ void cmsRAA(int version = 6)
   entry_q->SetMarkerStyle(kFullCircle);
   entry_q->SetMarkerSize(1);
 
-  entry_q=leg_q->AddEntry("raab","b-quarks (0-100%)^{ }             |#eta|<2.4","lpf");
-  entry_q->SetFillColor(TColor::GetColor("#ee7711"));
+  entry_q=leg_q->AddEntry("raab","*B #rightarrow J/#psi  (0-100%)  |#eta| < 2.4","lpf");
+  entry_q->SetFillColor(TColor::GetColor("#ba8a98"));
   entry_q->SetFillStyle(1001);
   entry_q->SetLineColor(1);
   entry_q->SetLineStyle(1);
   entry_q->SetLineWidth(1);
-  entry_q->SetMarkerStyle(kFullCircle);
+  entry_q->SetMarkerStyle(29);
   entry_q->SetMarkerColor(kRed);
-  entry_q->SetMarkerSize(1);
-  entry_q=leg_q->AddEntry("raabjpsi", "(via secondary J/#psi) ","");
+  entry_q->SetMarkerSize(1.2);
+  //entry_q=leg_q->AddEntry("raabjpsi", "(via secondary J/#psi)","");
   
   // jet legend
-  TLegend *leg_jet = new TLegend(0.57,0.69,0.95,0.74,NULL,"brNDC");
+  TLegend *leg_jet = new TLegend(0.14,0.65,0.6,0.72,NULL,"brNDC");
   leg_jet->SetBorderSize(0);
   leg_jet->SetTextFont(62);
-  leg_jet->SetTextSize(0.025);
+  leg_jet->SetTextSize(0.028);
   leg_jet->SetLineColor(1);
   leg_jet->SetLineStyle(1);
   leg_jet->SetLineWidth(1);
   leg_jet->SetFillColor(19);
   leg_jet->SetFillStyle(0);
 
-  TLegendEntry *entry_jet=leg_jet->AddEntry("raaq","q/g-jet^{^{ }} (0-5%)     |#eta|<2","lpf");
-  entry_jet->SetFillColor(TColor::GetColor("#00FFFF"));
+  TLegendEntry *entry_jet=leg_jet->AddEntry("raaq","*q/g-jet  (0-5%)  |#eta| < 2","lpf");
+  entry_jet->SetFillColor(TColor::GetColor("#00FF60"));
   entry_jet->SetFillStyle(1001);
   entry_jet->SetLineColor(1);
   entry_jet->SetLineStyle(1);
   entry_jet->SetLineWidth(1);
-  entry_jet->SetMarkerStyle(kFullCircle);
+  entry_jet->SetMarkerStyle(22);
   entry_jet->SetMarkerSize(1);
 
-  entry_jet=leg_jet->AddEntry("raaheavy","b-jet (0-100%)^{ }     |#eta|<2","lpf");
+  entry_jet=leg_jet->AddEntry("raaheavy","*b-jet  (0-10%)  |#eta| < 2","lpf");
   entry_jet->SetFillColor(TColor::GetColor("#FFBF00"));
   entry_jet->SetFillStyle(1001);
   entry_jet->SetLineColor(1);
   entry_jet->SetLineStyle(1);
   entry_jet->SetLineWidth(1);
-  entry_jet->SetMarkerStyle(kFullCircle);
+  entry_jet->SetMarkerStyle(21);
   entry_jet->SetMarkerColor(kRed);
   entry_jet->SetMarkerSize(1);
   
   leg->Draw();
-  leg_taa->Draw();
+  //leg_taa->Draw();
   leg_ewq->Draw();
   leg_q->Draw();
   leg_jet->Draw();
@@ -402,48 +411,49 @@ void cmsRAA(int version = 6)
 
   //--------------------------------------------------------------------------------
   //-------------------------- 2TPad
-  double sizeincrease = 1.2;
+  //double sizeincrease = 1.2;
   
-  TH1 *phAxis_single = new TH1D("phAxis_single",";p_{T}(m_{T}) (GeV);R_{AA}",1,0.9,100);
+  TH1 *phAxis_single = new TH1D("phAxis_single",";p_{T} (m_{T}) [GeV];R_{AA}",1,0,105);
   phAxis_single->GetYaxis()->CenterTitle(true);
-  phAxis_single->GetXaxis()->CenterTitle(true);
+  //phAxis_single->GetXaxis()->CenterTitle(true);
 
-  double defaxissize = phAxis_single->GetYaxis()->GetTitleSize();
-  double defaxislabel = phAxis_single->GetYaxis()->GetLabelSize();
+  //double defaxissize = phAxis_single->GetYaxis()->GetTitleSize();
+  //double defaxislabel = phAxis_single->GetYaxis()->GetLabelSize();
 
-  phAxis_single->GetYaxis()->SetTitleSize(defaxissize*sizeincrease);
-  phAxis_single->GetXaxis()->SetTitleSize(defaxissize*sizeincrease);
-  phAxis_single->GetYaxis()->SetLabelSize(defaxislabel*sizeincrease);
-  phAxis_single->GetXaxis()->SetLabelSize(defaxislabel*sizeincrease);
+  //phAxis_single->GetYaxis()->SetTitleSize(defaxissize*sizeincrease);
+  //phAxis_single->GetXaxis()->SetTitleSize(defaxissize*sizeincrease);
+  //phAxis_single->GetYaxis()->SetLabelSize(defaxislabel*sizeincrease);
+  //phAxis_single->GetXaxis()->SetLabelSize(defaxislabel*sizeincrease);
   
-  phAxis_single->GetYaxis()->SetNdivisions(310);
-  phAxis_single->GetXaxis()->SetNdivisions(310);
-  phAxis_single->GetYaxis()->SetTitleOffset(0.85);
-  phAxis_single->GetXaxis()->SetTitleOffset(0.85);
+  //phAxis_single->GetYaxis()->SetNdivisions(310);
+  //phAxis_single->GetXaxis()->SetNdivisions(310);
+  //phAxis_single->GetYaxis()->SetTitleOffset(0.85);
+  //phAxis_single->GetXaxis()->SetTitleOffset(0.85);
   
   phAxis_single->SetMinimum(0.);
-  phAxis_single->SetMaximum(2.);
-  TH1 *phAxis_jet = new TH1D("phAxis_jet",";p_{T} (GeV);",1,100,300);
-  phAxis_jet->GetYaxis()->CenterTitle(true);
-  phAxis_jet->GetXaxis()->CenterTitle(true);
-  phAxis_jet->GetYaxis()->SetTitleSize(defaxissize*sizeincrease);
-  phAxis_jet->GetXaxis()->SetTitleSize(defaxissize*sizeincrease);
-  phAxis_jet->GetYaxis()->SetLabelSize(defaxislabel*sizeincrease);
-  phAxis_jet->GetXaxis()->SetLabelSize(defaxislabel*sizeincrease);
-  phAxis_jet->GetYaxis()->SetNdivisions(310);
-  phAxis_jet->GetXaxis()->SetNdivisions(310);
-  phAxis_jet->GetYaxis()->SetTitleOffset(0.85);
-  phAxis_jet->GetXaxis()->SetTitleOffset(0.85);
+  phAxis_single->SetMaximum(2.5);
+  TH1 *phAxis_jet = new TH1D("phAxis_jet",";p_{T} [GeV];",1,75,300);
+  //phAxis_jet->GetYaxis()->CenterTitle(true);
+  //phAxis_jet->GetXaxis()->CenterTitle(true);
+  //phAxis_jet->GetYaxis()->SetTitleSize(defaxissize*sizeincrease);
+  //phAxis_jet->GetXaxis()->SetTitleSize(defaxissize*sizeincrease);
+  //phAxis_jet->GetYaxis()->SetLabelSize(defaxislabel*sizeincrease);
+  phAxis_jet->GetYaxis()->SetLabelColor(0);
+  //phAxis_jet->GetXaxis()->SetLabelSize(defaxislabel*sizeincrease);
+  //phAxis_jet->GetYaxis()->SetNdivisions(310);
+  //phAxis_jet->GetXaxis()->SetNdivisions(310);
+  //phAxis_jet->GetYaxis()->SetTitleOffset(0.85);
+  //phAxis_jet->GetXaxis()->SetTitleOffset(0.85);
   
   phAxis_jet->SetMinimum(0.);
-  phAxis_jet->SetMaximum(2.);
+  phAxis_jet->SetMaximum(2.5);
 
   // redefine legends:
   // TAA only
-  TLegend *leg2_taa = new TLegend(0.15,0.85,0.5,0.9,NULL,"brNDC");
+  /*TLegend *leg2_taa = new TLegend(0.15,0.85,0.5,0.9,NULL,"brNDC");
   leg2_taa->SetBorderSize(0);
   leg2_taa->SetTextFont(62);
-  leg2_taa->SetTextSize(0.025);
+  leg2_taa->SetTextSize(0.028);
   leg2_taa->SetLineColor(1);
   leg2_taa->SetLineStyle(1);
   leg2_taa->SetLineWidth(1);
@@ -455,52 +465,49 @@ void cmsRAA(int version = 6)
   entry2_taa->SetLineColor(0);
   entry2_taa->SetLineWidth(1);
   entry2_taa->SetMarkerStyle(21);
-  entry2_taa->SetMarkerSize(1);
+  entry2_taa->SetMarkerSize(1);*/
 
-  TLegend *leg2 = new TLegend(0.03,0.7,0.46,0.93,NULL,"brNDC");
+  TLegend *leg2 = new TLegend(0.04,0.81,0.34,0.93,NULL,"brNDC");
   leg2->SetBorderSize(0);
   leg2->SetTextFont(62);
-  leg2->SetTextSize(0.04);
-  leg2->SetLineColor(1);
-  leg2->SetLineStyle(1);
-  leg2->SetLineWidth(1);
-  leg2->SetFillColor(19);
+  leg2->SetTextSize(0.03);
+  //leg2->SetLineColor(1);
+  //leg2->SetLineStyle(1);
+  //leg2->SetLineWidth(1);
+  //leg2->SetFillColor(19);
   leg2->SetFillStyle(0);
-  TLegendEntry *entry2=leg2->AddEntry("general","CMS PRELIMINARY","");
-  entry2->SetLineWidth(1);
-  entry2=leg2->AddEntry("general","PbPb #sqrt{s_{NN}} = 2.76 TeV","");
-  entry2=leg2->AddEntry("general","","");
+  TLegendEntry *entry2=leg2->AddEntry("general","CMS  *PRELIMINARY  PbPb #sqrt{s_{NN}} = 2.76 TeV","");
   entry2=leg2->AddEntry("general","#int L dt = 7-150 #mub^{-1}","");
   
   // jet leg2end
-  TLegend *leg2_jet = new TLegend(0.45,0.55,0.9,0.65,NULL,"brNDC");
+  TLegend *leg2_jet = new TLegend(0.08,0.73,0.64,0.81,NULL,"brNDC");
   leg2_jet->SetBorderSize(0);
   leg2_jet->SetTextFont(62);
-  leg2_jet->SetTextSize(0.03);
+  leg2_jet->SetTextSize(0.028);
   leg2_jet->SetLineColor(1);
   leg2_jet->SetLineStyle(1);
   leg2_jet->SetLineWidth(1);
   leg2_jet->SetFillColor(19);
   leg2_jet->SetFillStyle(0);
 
-  TLegendEntry *entry2_jet=leg2_jet->AddEntry("raaq","q/g-jet^{^{ }} (0-5%)     |#eta|<2","lpf");
-  entry2_jet->SetFillColor(TColor::GetColor("#00FFFF"));
+  TLegendEntry *entry2_jet=leg2_jet->AddEntry("raaq","*q/g-jet  (0-5%)  |#eta| < 2","lpf");
+  entry2_jet->SetFillColor(TColor::GetColor("#00FF60"));
   entry2_jet->SetFillStyle(1001);
   entry2_jet->SetLineColor(1);
   entry2_jet->SetLineStyle(1);
   entry2_jet->SetLineWidth(1);
-  entry2_jet->SetMarkerStyle(kFullCircle);
+  entry2_jet->SetMarkerStyle(22);
   entry2_jet->SetMarkerSize(mymarkersize);
 
   if(version > 5)
   {
-    entry2_jet=leg2_jet->AddEntry("raaheavy","b-jet (0-100%)^{ }     |#eta|<2","lpf");
+    entry2_jet=leg2_jet->AddEntry("raaheavy","*b-jet  (0-10%)  |#eta| < 2","lpf");
     entry2_jet->SetFillColor(TColor::GetColor("#FFBF00"));
     entry2_jet->SetFillStyle(1001);
     entry2_jet->SetLineColor(1);
     entry2_jet->SetLineStyle(1);
     entry2_jet->SetLineWidth(1);
-    entry2_jet->SetMarkerStyle(kFullCircle);
+    entry2_jet->SetMarkerStyle(21);
     entry2_jet->SetMarkerColor(kRed);
     entry2_jet->SetMarkerSize(mymarkersize);
   }
@@ -508,10 +515,10 @@ void cmsRAA(int version = 6)
   
 
   // EWQ legend
-  TLegend *leg2_ewq = new TLegend(0.47,0.8,0.9,0.95,NULL,"brNDC");
+  TLegend *leg2_ewq = new TLegend(0.14,0.81,0.7,0.93,NULL,"brNDC");
   leg2_ewq->SetBorderSize(0);
   leg2_ewq->SetTextFont(62);
-  leg2_ewq->SetTextSize(0.027);
+  leg2_ewq->SetTextSize(0.028);
   leg2_ewq->SetLineColor(1);
   leg2_ewq->SetLineStyle(1);
   leg2_ewq->SetLineWidth(1);
@@ -520,45 +527,45 @@ void cmsRAA(int version = 6)
   TLegendEntry *entry2_ewq;
   if(version > 1)
   {
-    entry2_ewq=leg2_ewq->AddEntry("raaz","Z  (0-100%) p_{T}^{#mu} > 20 GeV/c^{^{ }}    |y|<2","lpf");
+    entry2_ewq=leg2_ewq->AddEntry("raaz","*Z  (0-100%) |y| < 2","lpf");
     entry2_ewq->SetFillColor(TColor::GetColor("#ff8888"));
     entry2_ewq->SetFillStyle(1001);
     entry2_ewq->SetLineColor(1);
     entry2_ewq->SetLineWidth(1);
-    entry2_ewq->SetMarkerStyle(kFullCircle);
+    entry2_ewq->SetMarkerStyle(22);
     entry2_ewq->SetMarkerSize(mymarkersize);
   }
   else entry2_ewq=leg2_ewq->AddEntry("raaz","",""); 
   
   if(version > 2)
   {  
-    entry2_ewq=leg2_ewq->AddEntry("raaw","W  (0-100%)  p_{T}^{#mu} > 25 GeV/c^{^{ }}  |#eta^{#mu}|<2.1","lpf");
+    entry2_ewq=leg2_ewq->AddEntry("raaw","W  (0-100%) p_{T}^{#mu} > 25 GeV/c^{^{ }}, |#eta^{#mu}| < 2.1","lpf");
     entry2_ewq->SetFillColor(TColor::GetColor("#ff88ff"));
     entry2_ewq->SetFillStyle(1001);
     entry2_ewq->SetLineColor(1);
     entry2_ewq->SetLineWidth(1);
-    entry2_ewq->SetMarkerStyle(kFullCircle);
+    entry2_ewq->SetMarkerStyle(21);
     entry2_ewq->SetMarkerSize(mymarkersize);
   } 
   else  entry2_ewq=leg2_ewq->AddEntry("raaw","","");
   
   if(version > 0)
   {
-    entry2_ewq=leg2_ewq->AddEntry("raaphoton","Isolated photon  (0-10%)      |#eta|<1.44","lpf");
+    entry2_ewq=leg2_ewq->AddEntry("raaphoton","Isolated photon  (0-10%)  |#eta| < 1.44","lpf");
     entry2_ewq->SetFillColor(TColor::GetColor("#ffff00"));
     entry2_ewq->SetFillStyle(1001);
     entry2_ewq->SetLineColor(1);
     entry2_ewq->SetLineWidth(1);
-    entry2_ewq->SetMarkerStyle(kFullCircle);
+    entry2_ewq->SetMarkerStyle(23);
     entry2_ewq->SetMarkerSize(mymarkersize);
   }
   else  entry2_ewq=leg2_ewq->AddEntry("raaphoton","","");
     
   // B and h
-  TLegend *leg2_q = new TLegend(0.47,0.15,0.89,0.3,NULL,"brNDC");
+  TLegend *leg2_q = new TLegend(0.14,0.74,0.7,0.81,NULL,"brNDC");
   leg2_q->SetBorderSize(0);
   leg2_q->SetTextFont(62);
-  leg2_q->SetTextSize(0.027);
+  leg2_q->SetTextSize(0.028);
   leg2_q->SetLineColor(1);
   leg2_q->SetLineStyle(1);
   leg2_q->SetLineWidth(1);
@@ -567,7 +574,7 @@ void cmsRAA(int version = 6)
   TLegendEntry *entry2_q;
   if(version > 3)
   {
-    entry2_q=leg2_q->AddEntry("raah","Charged particles^{^{ }} (0-5%)     |#eta|<1","lpf");
+    entry2_q=leg2_q->AddEntry("raah","Charged particles  (0-5%)  |#eta| < 1","lpf");
     entry2_q->SetFillColor(TColor::GetColor("#33ccff"));
     entry2_q->SetFillStyle(1001);
     entry2_q->SetLineColor(1);
@@ -580,17 +587,17 @@ void cmsRAA(int version = 6)
   
   if(version > 5)
   {
-    entry2_q=leg2_q->AddEntry("raab","b-quarks (0-100%)^{ }                |y|<2.4","lpf");
+    entry2_q=leg2_q->AddEntry("raab","*B #rightarrow J/#psi  (0-100%)  |y| < 2.4","lpf");
     // entry2_q->SetFillColor(TColor::GetColor("#ee7711"));
     entry2_q->SetFillColor(TColor::GetColor("#ba8a98"));
     entry2_q->SetFillStyle(1001);
     entry2_q->SetLineColor(1);
     entry2_q->SetLineStyle(1);
     entry2_q->SetLineWidth(1);
-    entry2_q->SetMarkerStyle(kFullCircle);
+    entry2_q->SetMarkerStyle(29);
     entry2_q->SetMarkerColor(kRed);
     entry2_q->SetMarkerSize(mymarkersize);
-    entry2_q=leg2_q->AddEntry("raabjpsi", "(via secondary J/#psi) ","");
+    //entry2_q=leg2_q->AddEntry("raabjpsi", "(via secondary J/#psi)","");
   }
   else
   {
@@ -604,10 +611,10 @@ void cmsRAA(int version = 6)
     TPad *p_0 = new TPad("p_0","p_0",0,0,0.50,1);
     p_0->Draw();
     p_0->cd();
-    p_0->SetRightMargin(0);
+    p_0->SetRightMargin(0.03);
     
     phAxis_single->Draw("");
-    box_lin->Draw();
+    //box_lin->Draw();
     
     pgRaa_photon->SetMarkerSize(mymarkersize);
     pgRaa_z->SetMarkerSize(mymarkersize);
@@ -629,18 +636,18 @@ void cmsRAA(int version = 6)
     if(version > 2) pgRaa_w->Draw("P z");
     if(version > 5) pgRaa_npjpsi->Draw("P z");
     
-    TLine *line_single = new TLine(0.9,1,100,1);
+    TLine *line_single = new TLine(0,1,105,1);
     line_single->SetLineStyle(7);
     line_single->Draw();
     
     // legends 
-    leg2_taa->Draw();
+    //leg2_taa->Draw();
     leg2_q->Draw();
     leg2_ewq->Draw();
     TLine * midborder = new TLine(99.9,0,99.9,2);
     midborder->SetLineStyle(1);
     
-    if(version < 5) midborder->Draw();
+    //if(version < 5) midborder->Draw();
     
     pc2->cd();
     // midborder->Draw();
@@ -650,7 +657,7 @@ void cmsRAA(int version = 6)
       TPad *p_1 = new TPad("p_1","p_1",0.50,0,1,1);
       p_1->Draw();
       p_1->cd();
-      p_1->SetLeftMargin(0.);
+      p_1->SetLeftMargin(0.06);
       p_1->SetTickx(1);
       p_1->SetTicky(1);
       
@@ -663,7 +670,7 @@ void cmsRAA(int version = 6)
       if(version > 4) pgRaa_jet->Draw("P z");
       
       
-      TLine *line_jet = new TLine(100,1,300,1);
+      TLine *line_jet = new TLine(75,1,300,1);
       line_jet->SetLineStyle(7);
       line_jet->Draw();
       
@@ -675,18 +682,18 @@ void cmsRAA(int version = 6)
     gPad->RedrawAxis();
     
     //! adds the latex "100" joining the two pads
-    pc2->cd();
-    TPad * blankpad = new TPad("b", "b",0.48,0.07,0.52,0.11);
-    blankpad->SetBorderMode(0);
-    blankpad->Draw();
-    blankpad->cd();
-    TLatex * test = new TLatex( 0.102843, 0.122822, Form("100"));
-    test->SetTextSize(test->GetTextSize()*26.0*sizeincrease);
-    test->Draw("same");
-    blankpad->Update();
+    //pc2->cd();
+    //TPad * blankpad = new TPad("b", "b",0.48,0.07,0.52,0.11);
+    //blankpad->SetBorderMode(0);
+    //blankpad->Draw();
+    //blankpad->cd();
+    //TLatex * test = new TLatex( 0.102843, 0.122822, Form("100"));
+    //test->SetTextSize(test->GetTextSize()*26.0*sizeincrease);
+    //test->Draw("same");
+    //blankpad->Update();
     
     // pc2->SaveAs(Form("raaZoo_cms_2pads_%d.pdf",version));
-    pc2->SaveAs(Form("raaZoo_cms_2pads_%d.png",version));
+    //pc2->SaveAs(Form("raaZoo_cms_2pads_%d.png",version));
 
   }
 }
