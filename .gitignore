@@ -1,0 +1,5 @@
+# root and plots
+cmsRAA_C.d
+cmsRAA_C.so
+*.png
+.gitignore~
