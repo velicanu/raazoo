@@ -74,6 +74,7 @@ void cmsRAARpA(int version = 6)
   //systm error
   pgRaaSyst_h->SetName("pgRaaSyst_h");
   pgRaaSyst_h->SetFillColor(TColor::GetColor("#33ccff"));
+  pgRaaSyst_h->SetFillStyle(3001);
 
 
 //----------------------------------------- charged hadrons (RpA)
@@ -115,12 +116,13 @@ void cmsRAARpA(int version = 6)
   TGraphErrors *pgRaa_hp          = new TGraphErrors(33, ptBins_hp, raa_hp, ptError_hp, raaStat_hp);
   TGraphAsymmErrors *pgRaaSyst_hp = new TGraphAsymmErrors(33, ptBins_hp, raa_hp, ptSystXlow_hp,ptSystXhigh_hp,raaSyst_hp,raaSyst_hp);
   pgRaa_hp->SetName("pgRaa_hp");
-  pgRaa_hp->SetMarkerStyle(25);
+  pgRaa_hp->SetMarkerStyle(21);
   pgRaa_hp->SetMarkerSize(1.);
 
   //systm error
   pgRaaSyst_hp->SetName("pgRaaSyst_hp");
-  pgRaaSyst_hp->SetFillColor(TColor::GetColor("#ffff00"));
+  pgRaaSyst_hp->SetFillColor(kViolet+10);
+  pgRaaSyst_hp->SetFillStyle(3001);
 
 
 //----------------------------------------- jets (RpA)
@@ -166,8 +168,8 @@ void cmsRAARpA(int version = 6)
   TGraphAsymmErrors *pgRaaSyst_jp = new TGraphAsymmErrors(19, ptBins_jp, raa_jp, ptSystXlow_jp,ptSystXhigh_jp,raaSyst2_jp,raaSyst2_jp);
   TGraphAsymmErrors *pgRaaSyst2_jp = new TGraphAsymmErrors(19, ptBins_jp, raa_jp, ptSystXlow_jp,ptSystXhigh_jp,raaSyst_jp,raaSyst_jp);
   pgRaa_jp->SetName("pgRaa_jp");
-  pgRaa_jp->SetMarkerStyle(25);
-  pgRaa_jp->SetMarkerSize(1.);
+  pgRaa_jp->SetMarkerStyle(34);
+  pgRaa_jp->SetMarkerSize(1.2);
 
   //systm error
   pgRaaSyst_jp->SetName("pgRaaSyst_jp");
@@ -176,6 +178,7 @@ void cmsRAARpA(int version = 6)
   pgRaaSyst2_jp->SetFillColor(TColor::GetColor("#FFBF00"));
   //pgRaaSyst2_jp->SetFillStyle(1);
   pgRaaSyst2_jp->SetLineWidth(2);
+  //pgRaaSyst2_jp->SetFillStyle(3001);
 
   //----------------------------------------- jet RAA
   double ptBins_jet[]   = {105,115,125,135,145,155,165,175,190,220,270}; 
@@ -191,8 +194,8 @@ void cmsRAARpA(int version = 6)
   TGraphErrors *pgRaa_jet          = new TGraphErrors(11, ptBins_jet, raa_jet, ptError_jet, raaStat_jet);
   TGraphAsymmErrors *pgRaaSyst_jet = new TGraphAsymmErrors(11, ptBins_jet, raa_jet, ptSystXlow_jet,ptSystXhigh_jet,raaSyst_jet,raaSyst_jet);
   pgRaa_jet->SetName("pgRaa_jet");
-  pgRaa_jet->SetMarkerStyle(20);
-  pgRaa_jet->SetMarkerSize(1.);
+  pgRaa_jet->SetMarkerStyle(33);
+  pgRaa_jet->SetMarkerSize(1.4);
   
   //systm error
   pgRaaSyst_jet->SetName("pgRaaSyst_jet");
@@ -365,7 +368,7 @@ void cmsRAARpA(int version = 6)
   TLegend *leg = new TLegend(0.05,0.87,0.39,0.95,NULL,"brNDC");
   leg->SetBorderSize(0);
   leg->SetTextFont(62);
-  leg->SetTextSize(0.029);
+  leg->SetTextSize(0.0558);
   leg->SetLineColor(1);
   leg->SetLineStyle(1);
   leg->SetLineWidth(1);
@@ -379,10 +382,12 @@ void cmsRAARpA(int version = 6)
 
   TLegendEntry *entry=leg->AddEntry("hEtSIEIECorrected","CMS Preliminary","");
   entry->SetLineWidth(1);
-  entry=leg->AddEntry("hEtSIEIECorrected","PbPb #sqrt{s_{NN}} = 2.76 TeV  #int L dt = 150 #mub^{-1}","");
-  entry->SetLineWidth(1);
-  entry=leg->AddEntry("hEtSIEIECorrected","pPb #sqrt{s_{NN}} = 5.02 TeV  #int L dt = 35 nb^{-1}","");
-  entry->SetLineWidth(1);
+
+  TLegend *legLumi = new TLegend(0.8,0.87,0.95,0.95,NULL,"brNDC");
+  TLegendEntry *entry_lumi=legLumi->AddEntry("hEtSIEIECorrected","PbPb #sqrt{s_{NN}} = 2.76 TeV  #int L dt = 150 #mub^{-1}","");
+  entry_lumi->SetLineWidth(1);
+  entry_lumi=legLumi->AddEntry("hEtSIEIECorrected","pPb #sqrt{s_{NN}} = 5.02 TeV  #int L dt = 35 nb^{-1}","");
+  entry_lumi->SetLineWidth(1);
   
   
 
@@ -454,7 +459,7 @@ void cmsRAARpA(int version = 6)
 
   TLegendEntry *entry_q=leg_q->AddEntry("raah","Charged particles  R_{AA}  (0-5%)  |#eta| < 1","lpf");
   entry_q->SetFillColor(TColor::GetColor("#33ccff"));
-  entry_q->SetFillStyle(1001);
+  entry_q->SetFillStyle(3001);
   entry_q->SetLineColor(1);
   entry_q->SetLineStyle(1);
   entry_q->SetLineWidth(1);
@@ -489,7 +494,7 @@ void cmsRAARpA(int version = 6)
   entry_jet->SetLineColor(1);
   entry_jet->SetLineStyle(1);
   entry_jet->SetLineWidth(1);
-  entry_jet->SetMarkerStyle(25);
+  entry_jet->SetMarkerStyle(33);
   entry_jet->SetMarkerSize(1);
 
   entry_jet=leg_jet->AddEntry("raaheavy","*b-jet  (0-10%)  |#eta| < 2","lpf");
@@ -586,9 +591,18 @@ void cmsRAARpA(int version = 6)
   //leg2->SetLineWidth(1);
   //leg2->SetFillColor(19);
   leg2->SetFillStyle(0);
-  TLatex *cmsP = new TLatex(0,2.54," CMS Preliminary        pPb L = 35 nb^{-1}; PbPb L = 150 #mub^{-1}");
-  cmsP->SetTextFont(43);
-  cmsP->SetTextSize(20);
+  TLatex *cmsP = new TLatex(3.3,2.3,"CMS ");
+  cmsP->SetTextFont(62);
+  cmsP->SetTextSize(0.0558);
+
+  TLatex *cmsPrelim = new TLatex(18.5,2.3,"Preliminary");
+  cmsPrelim->SetTextFont(52);
+  cmsPrelim->SetTextSize(0.05);
+  cmsPrelim->SetTextColor(kRed+2);
+
+  TLatex *cmsLumi = new TLatex(49.24,2.55,"150 #mub^{-1} (PbPb 2.76 TeV)");
+  cmsLumi->SetTextFont(43);
+  cmsLumi->SetTextSize(25);
   TLatex *comEnergy = new TLatex(10.9,2.56," pPb #sqrt{s_{NN}} = 5.02 TeV                      PbPb #sqrt{s_{NN}} = 2.76 TeV");
   comEnergy->SetTextFont(43);
   comEnergy->SetTextSize(20);
@@ -612,7 +626,7 @@ void cmsRAARpA(int version = 6)
     entry2u_jet->SetMarkerSize(mymarkersize);
 
   // jet leg2end
-  TLegend *leg2_jet = new TLegend(0.088,0.727,0.767,0.892,NULL,"brNDC");
+  TLegend *leg2_jet = new TLegend(0.072,0.678,0.781,0.824,NULL,"brNDC");
   leg2_jet->SetBorderSize(0);
   //leg2_jet->SetTextFont(62);
   //leg2_jet->SetTextSize(0.028);
@@ -632,9 +646,11 @@ void cmsRAARpA(int version = 6)
     entry2_jet->SetLineColor(1);
     entry2_jet->SetLineStyle(1);
     entry2_jet->SetLineWidth(1);
-    entry2_jet->SetMarkerStyle(25);
+    entry2_jet->SetMarkerStyle(34);
     entry2_jet->SetMarkerColor(kBlack);
-    entry2_jet->SetMarkerSize(mymarkersize);
+    entry2_jet->SetTextFont(52);
+    entry2_jet->SetTextColor(kRed+2);
+    entry2_jet->SetMarkerSize(1.2);
   }
   else  entry2_jet=leg2_jet->AddEntry("raaheavy","","");
 
@@ -644,8 +660,8 @@ void cmsRAARpA(int version = 6)
   entry2_jet->SetLineColor(1);
   entry2_jet->SetLineStyle(1);
   entry2_jet->SetLineWidth(1);
-  entry2_jet->SetMarkerStyle(20);
-  entry2_jet->SetMarkerSize(mymarkersize);
+  entry2_jet->SetMarkerStyle(33);
+  entry2_jet->SetMarkerSize(1.4);
   
 
   // EWQ legend
@@ -696,7 +712,7 @@ void cmsRAARpA(int version = 6)
   else  entry2_ewq=leg2_ewq->AddEntry("raaphoton","","");
     
   // B and h
-  TLegend *leg2_q = new TLegend(0.21,0.74,0.82,0.89,NULL,"brNDC");
+  TLegend *leg2_q = new TLegend(0.172,0.678,0.85,0.824,NULL,"brNDC");
   leg2_q->SetBorderSize(0);
   //leg2_q->SetTextFont(62);
   //leg2_q->SetTextSize(0.028);
@@ -710,24 +726,24 @@ void cmsRAARpA(int version = 6)
   if(version > 3)
     {
       entry2_q=leg2_q->AddEntry("raahp","Charged particles  R_{pA}  |#eta_{CM}| < 1","lpf");
-      entry2_q->SetFillColor(TColor::GetColor("#ffff00"));
-    entry2_q->SetFillStyle(1001);
+      entry2_q->SetFillColor(kViolet+10);
+    entry2_q->SetFillStyle(3001);
     entry2_q->SetLineColor(1);
     entry2_q->SetLineStyle(1);
     entry2_q->SetLineWidth(1);
     entry2_q->SetMarkerStyle(25);
-    entry2_q->SetMarkerSize(mymarkersize);
+    entry2_q->SetMarkerSize(1.);
   }
   if(version > 3)
   {
     entry2_q=leg2_q->AddEntry("raah","Charged particles  R_{AA}  (0-5%)  |#eta| < 1","lpf");
     entry2_q->SetFillColor(TColor::GetColor("#33ccff"));
-    entry2_q->SetFillStyle(1001);
+    entry2_q->SetFillStyle(3001);
     entry2_q->SetLineColor(1);
     entry2_q->SetLineStyle(1);
     entry2_q->SetLineWidth(1);
     entry2_q->SetMarkerStyle(20);
-    entry2_q->SetMarkerSize(mymarkersize);
+    entry2_q->SetMarkerSize(1.);
   }
   else  entry2_q=leg2_q->AddEntry("raah","","");
 
@@ -755,12 +771,18 @@ void cmsRAARpA(int version = 6)
   if(bDo2PadZoo)
   {
     TCanvas *pc2 = new TCanvas("pc2","pc2",1200,600);
-    TPad *p_0 = new TPad("p_0","p_0",0,0,0.50,1);
+    TPad *p_0 = new TPad("p_0","p_0",0.0,0,0.5,1);
     //TPad *p_0 = new TPad("p_0","p_0",0,0,1,1);
     p_0->Draw();
     p_0->cd();
     p_0->SetRightMargin(0.03);
     p_0->SetTopMargin(0.078);
+
+    //reverse info
+    /*p_0->SetLeftMargin(0.06);
+    p_0->SetTickx(1);
+    p_0->SetTicky(1);
+    p_0->SetTopMargin(0.078);*/
     
     phAxis_single->Draw("");
     //box_lin->Draw();
@@ -776,8 +798,8 @@ void cmsRAARpA(int version = 6)
     
 //    if(version > 0) pgRaaSyst_photon->Draw("2");
 //    if(version > 1) pgRaaSyst_z->Draw("2");
-    if(version > 3) pgRaaSyst_h->Draw("2");
-    if(version > 3) pgRaaSyst_hp->Draw("2");
+    if(version > 3) pgRaaSyst_h->Draw("2,5");
+    if(version > 3) pgRaaSyst_hp->Draw("2,5");
 //    if(version > 2) pgRaaSyst_w->Draw("2");
 //    if(version > 5) pgRaaSyst_npjpsi->Draw("2");
     
@@ -799,6 +821,8 @@ void cmsRAARpA(int version = 6)
     TLine * midborder = new TLine(99.9,0,99.9,2);
     midborder->SetLineStyle(1);
     cmsP->Draw();
+    cmsPrelim->Draw();
+    cmsLumi->Draw();
 
     //if(version < 5) midborder->Draw();
     
@@ -808,8 +832,8 @@ void cmsRAARpA(int version = 6)
     {
       
       // jet pad
-      //TPad *p_1 = new TPad("p_1","p_1",0,0,1,1);
       TPad *p_1 = new TPad("p_1","p_1",0.51,0,1,1);
+      //TPad *p_1 = new TPad("p_1","p_1",0.52,0,1,1);
       p_1->Draw();
       p_1->cd();
       p_1->SetLeftMargin(0.06);
@@ -817,15 +841,19 @@ void cmsRAARpA(int version = 6)
       p_1->SetTicky(1);
       p_1->SetTopMargin(0.078);
 
+      //reverse info
+      /*p_1->SetRightMargin(0.03);
+      p_1->SetTopMargin(0.078);*/
+
       phAxis_single->Draw("");
       
       if(version > 4) phAxis_jet->Draw("");
       
-      if(version > 4) pgRaaSyst_jet->Draw("2");
-      if(version > 4) pgRaaSyst2_jp->Draw("2");
+      if(version > 4) pgRaaSyst_jet->Draw("2,5");
+      if(version > 4) pgRaaSyst2_jp->Draw("2,5");
       TGraphAsymmErrors *cln1 = (TGraphAsymmErrors*)pgRaaSyst2_jp->Clone("cln1");
       cln1->Draw("[]");
-      if(version > 4) pgRaaSyst_jp->Draw("2");
+      //if(version > 4) pgRaaSyst_jp->Draw("2");
       TGraphAsymmErrors* cln2 = (TGraphAsymmErrors*)pgRaaSyst_jp->Clone("cln2");
       cln2->SetFillStyle(1);
       cln2->SetFillColor(0);
@@ -841,8 +869,15 @@ void cmsRAARpA(int version = 6)
       
       leg2->Draw();
       leg2_jet->Draw();
-      leg2_jetUnc->Draw();
-      comEnergy->Draw();
+      TLatex *cmsLumi2 = new TLatex(212.5,2.55,"35 nb^{-1} (pPb, 5.02 TeV)");
+      cmsLumi2->SetTextFont(43);
+      cmsLumi2->SetTextSize(25);
+      cmsLumi2->Draw();
+
+      //cmsP->Draw();
+      //cmsPrelim->Draw();
+      //leg2_jetUnc->Draw();
+      //comEnergy->Draw();
     }
     
     p_0->cd();
