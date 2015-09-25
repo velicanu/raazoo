@@ -60,9 +60,14 @@ void bcjetRAA(int version = 0)
 
   /*** Define canvas and histogram pad ***/
   TCanvas * c1 = new TCanvas("c1","c1",600,600);
-  TH2D * dummy = new TH2D("dummy",";p_{T} [GeV];RAA",1,0.1,260,1,0.1,2.3);
+  TH2D * dummy = new TH2D("dummy",";p_{T} [GeV];Nuclear Modification Factor",1,0,260,1,0,2.5);
   dummy->GetYaxis()->CenterTitle();
   dummy->GetXaxis()->CenterTitle();
+  dummy->GetXaxis()->SetTitleFont(132);
+  dummy->GetXaxis()->SetTitleFont(132);
+  dummy->GetYaxis()->SetTitleFont(132);
+  dummy->GetYaxis()->SetTitleFont(132);
+  dummy->GetYaxis()->SetTitleOffset(1.2);
   dummy->GetXaxis()->SetTitleSize(0.055);
   dummy->GetXaxis()->SetLabelSize(0.055);
   dummy->GetYaxis()->SetTitleSize(0.055);
@@ -74,30 +79,38 @@ void bcjetRAA(int version = 0)
 
   /* draw c-jet RpA */
   hpARatio->SetMarkerStyle(kFullSquare);
+  systErrRatiopA->SetLineWidth(1);
   systErrRatiopA->SetFillStyle(1001);
   systErrRatiopA->SetFillColor(TColor::GetColor("#00FF60"));
   systErrRatiopA->Draw("5 same");
   hpARatio->Draw("Psame");
 
   /* draw b-jet RpA */
+  RpA_SystErr_bin0->SetLineWidth(1);
   RpA_SystErr_bin0->SetFillStyle(1001);
   RpA_SystErr_bin0->SetFillColor(TColor::GetColor("#ba8a98"));
   RpA_SystErr_bin0->Draw("5 same");
+  RpA_SystErr_bin1->SetLineWidth(1);
   RpA_SystErr_bin1->SetFillStyle(1001);
   RpA_SystErr_bin1->SetFillColor(TColor::GetColor("#ba8a98"));
   RpA_SystErr_bin1->Draw("5 same");
+  RpA_SystErr_bin2->SetLineWidth(1);
   RpA_SystErr_bin2->SetFillStyle(1001);
   RpA_SystErr_bin2->SetFillColor(TColor::GetColor("#ba8a98"));
   RpA_SystErr_bin2->Draw("5 same");
+  RpA_SystErr_bin3->SetLineWidth(1);
   RpA_SystErr_bin3->SetFillStyle(1001);
   RpA_SystErr_bin3->SetFillColor(TColor::GetColor("#ba8a98"));
   RpA_SystErr_bin3->Draw("5 same");
+  RpA_SystErr_bin4->SetLineWidth(1);
   RpA_SystErr_bin4->SetFillStyle(1001);
   RpA_SystErr_bin4->SetFillColor(TColor::GetColor("#ba8a98"));
   RpA_SystErr_bin4->Draw("5 same");
+  RpA_SystErr_bin5->SetLineWidth(1);
   RpA_SystErr_bin5->SetFillStyle(1001);
   RpA_SystErr_bin5->SetFillColor(TColor::GetColor("#ba8a98"));
   RpA_SystErr_bin5->Draw("5 same");
+  RpA_SystErr_bin6->SetLineWidth(1);
   RpA_SystErr_bin6->SetFillStyle(1001);
   RpA_SystErr_bin6->SetFillColor(TColor::GetColor("#ba8a98"));
   RpA_SystErr_bin6->Draw("5 same");
@@ -109,22 +122,41 @@ void bcjetRAA(int version = 0)
   p8860_d10x1y1->Draw("5 same");
   points->Draw("PE same");
 
+  TLatex * toptext = new TLatex( 0.23, 0.955, Form("150 #mub^{-1} (PbPb 2.76 TeV), 35 nb^{-1} (pPb 5.02 TeV)"));
+  toptext->SetNDC(1);
+  toptext->SetTextSize(toptext->GetTextSize()*1.05);
+  toptext->Draw("same");
+
+  TLatex * cms = new TLatex( 0.25, 0.88, Form("#font[22]{CMS}"));
+  cms->SetNDC(1);
+  cms->SetTextSize(cms->GetTextSize()*1.21);
+  cms->Draw("same");
+  
+  TLatex * prelim = new TLatex( 0.35, 0.88, Form("#font[32]{Preliminary}"));
+  prelim->SetNDC(1);
+  prelim->SetTextSize(prelim->GetTextSize()*1.21);
+  prelim->SetTextColor(TColor::GetColor("#8E0000"));
+  prelim->Draw("same");
+  
+  
   
   /*** Draw Legend ***/
-  TLegend *leg = new TLegend(0.47,0.75,0.95,0.90,NULL,"brNDC");
+  TLegend *leg = new TLegend(0.45,0.70,0.95,0.85,NULL,"brNDC");
   leg->SetBorderSize(0);
-  leg->SetTextFont(62);
-  leg->SetTextSize(0.029);
   leg->SetLineColor(1);
   leg->SetLineStyle(1);
   leg->SetLineWidth(1);
   leg->SetFillColor(19);
   leg->SetFillStyle(0);
+  float legend_text_size=0.032;
   
   /* draw c-jet RpA */
   TLegendEntry *e_cjetrpa=leg->AddEntry("cjetrpa","c-jet RpA Data/PYTHIA Z2","lpf");
   e_cjetrpa->SetFillColor(TColor::GetColor("#00FF60"));
   e_cjetrpa->SetFillStyle(1001);
+  e_cjetrpa->SetTextSize(legend_text_size);
+  e_cjetrpa->SetTextFont(22);
+  e_cjetrpa->SetTextColor(TColor::GetColor("#8E0000"));
   e_cjetrpa->SetLineColor(1);
   e_cjetrpa->SetLineStyle(1);
   e_cjetrpa->SetLineWidth(1);
@@ -135,6 +167,9 @@ void bcjetRAA(int version = 0)
   TLegendEntry *e_bjetrpa=leg->AddEntry("bjetrpa","b-jet RpA Data/PYTHIA Z2","lpf");
   e_bjetrpa->SetFillColor(TColor::GetColor("#ba8a98"));
   e_bjetrpa->SetFillStyle(1001);
+  e_bjetrpa->SetTextSize(legend_text_size);
+  e_bjetrpa->SetTextFont(22);
+  e_bjetrpa->SetTextColor(TColor::GetColor("#8E0000"));
   e_bjetrpa->SetLineColor(1);
   e_bjetrpa->SetLineStyle(1);
   e_bjetrpa->SetLineWidth(1);
@@ -145,6 +180,8 @@ void bcjetRAA(int version = 0)
   TLegendEntry *e_bjetraa=leg->AddEntry("bjetraa","b-jet RAA","lpf");
   e_bjetraa->SetFillColor(TColor::GetColor("#33ccff"));
   e_bjetraa->SetFillStyle(1001);
+  e_bjetraa->SetTextSize(legend_text_size);
+  e_bjetraa->SetTextFont(22);
   e_bjetraa->SetLineColor(1);
   e_bjetraa->SetLineStyle(1);
   e_bjetraa->SetLineWidth(1);
