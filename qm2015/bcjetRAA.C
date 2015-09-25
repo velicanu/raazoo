@@ -23,7 +23,7 @@
 #include "TLine.h"
 
 #endif
-void cmsRAA(int version = 0)
+void bcjetRAA(int version = 0)
 {
   
   /*** Get data points ***/
@@ -63,8 +63,6 @@ void cmsRAA(int version = 0)
   TH2D * dummy = new TH2D("dummy",";p_{T} [GeV];RAA",1,0.1,260,1,0.1,2.3);
   dummy->GetYaxis()->CenterTitle();
   dummy->GetXaxis()->CenterTitle();
-  cout<<dummy->GetXaxis()->GetTitleSize()<<endl;
-  cout<<dummy->GetXaxis()->GetLabelSize()<<endl;
   dummy->GetXaxis()->SetTitleSize(0.055);
   dummy->GetXaxis()->SetLabelSize(0.055);
   dummy->GetYaxis()->SetTitleSize(0.055);
