@@ -181,7 +181,7 @@ void mesonRAA(int version = 0)
   
   /*** Draw Legend ***/
   // TLegend *leg = new TLegend(0.35,0.65,0.95,0.85,NULL,"brNDC");
-  TLegend *leg = new TLegend(0.22,0.65,0.95,0.85,NULL,"brNDC");
+  TLegend *leg = new TLegend(0.22,0.61,0.95,0.85,NULL,"brNDC");
   leg->SetBorderSize(0);
   leg->SetTextFont(62);
   leg->SetTextSize(0.029);
