@@ -74,6 +74,10 @@ void bcjetRAA(int version = 0)
   dummy->GetYaxis()->SetLabelSize(0.055);
   dummy->Draw();
 
+  TLine * lone = new TLine(0,1,250,1);
+  lone->SetLineStyle(7);
+  lone->Draw();
+
   
   /*** Draw Points ***/
 
@@ -138,10 +142,19 @@ void bcjetRAA(int version = 0)
   prelim->SetTextColor(TColor::GetColor("#8E0000"));
   prelim->Draw("same");
   
+  TBox *pPb_lumi_uncertainty = new TBox(0.9,0.964,15,1.036);
+  pPb_lumi_uncertainty->SetFillColor(TColor::GetColor("#006600"));
+  pPb_lumi_uncertainty->SetFillStyle(1001);
+  TBox *refernce_uncertainty = new TBox(0.9,0.78,15,1.22);
+  refernce_uncertainty->SetFillColor(TColor::GetColor("#ff6666"));
+  refernce_uncertainty->SetFillStyle(1001);
+
+  refernce_uncertainty->Draw("same");
+  pPb_lumi_uncertainty->Draw("same");
   
   
   /*** Draw Legend ***/
-  TLegend *leg = new TLegend(0.45,0.70,0.95,0.85,NULL,"brNDC");
+  TLegend *leg = new TLegend(0.22,0.65,0.95,0.85,NULL,"brNDC");
   leg->SetBorderSize(0);
   leg->SetLineColor(1);
   leg->SetLineStyle(1);
@@ -187,6 +200,26 @@ void bcjetRAA(int version = 0)
   e_bjetraa->SetLineWidth(1);
   e_bjetraa->SetMarkerStyle(kFullCircle);
   e_bjetraa->SetMarkerSize(1);
+  
+  /* lumi uncertainty legend */
+  TLegendEntry *e_lumiuncert=leg->AddEntry("lumiuncert","pPb Luminosity Uncertainty","f");
+  e_lumiuncert->SetFillColor(TColor::GetColor("#006600"));
+  e_lumiuncert->SetFillStyle(1001);
+  e_lumiuncert->SetTextSize(legend_text_size);
+  e_lumiuncert->SetTextFont(22);
+  e_lumiuncert->SetLineWidth(0);
+  e_lumiuncert->SetMarkerStyle(kFullCircle);
+  e_lumiuncert->SetMarkerSize(1);
+  
+  /* refernce uncertainty legend*/
+  TLegendEntry *e_refuncert=leg->AddEntry("refuncert","Reference Uncertainty","f");
+  e_refuncert->SetFillColor(TColor::GetColor("#ff6666"));
+  e_refuncert->SetFillStyle(1001);
+  e_refuncert->SetTextSize(legend_text_size);
+  e_refuncert->SetTextFont(22);
+  e_refuncert->SetLineWidth(0);
+  e_refuncert->SetMarkerStyle(kFullCircle);
+  e_refuncert->SetMarkerSize(1);
   
   leg->Draw();
 
