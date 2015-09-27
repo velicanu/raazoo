@@ -63,10 +63,8 @@ void bcjetRAA(int version = 0)
   TH2D * dummy = new TH2D("dummy",";p_{T} [GeV];Nuclear Modification Factor",1,0,260,1,0,2.5);
   dummy->GetYaxis()->CenterTitle();
   dummy->GetXaxis()->CenterTitle();
-  dummy->GetXaxis()->SetTitleFont(132);
-  dummy->GetXaxis()->SetTitleFont(132);
-  dummy->GetYaxis()->SetTitleFont(132);
-  dummy->GetYaxis()->SetTitleFont(132);
+  dummy->GetXaxis()->SetTitleFont(42);
+  dummy->GetYaxis()->SetTitleFont(42);
   dummy->GetYaxis()->SetTitleOffset(1.2);
   dummy->GetXaxis()->SetTitleSize(0.055);
   dummy->GetXaxis()->SetLabelSize(0.055);
@@ -85,44 +83,44 @@ void bcjetRAA(int version = 0)
   hpARatio->SetMarkerStyle(kFullSquare);
   systErrRatiopA->SetLineWidth(1);
   systErrRatiopA->SetFillStyle(1001);
-  systErrRatiopA->SetFillColor(TColor::GetColor("#00FF60"));
+  systErrRatiopA->SetFillColor(TColor::GetColor("#ba8a98"));
   systErrRatiopA->Draw("5 same");
   hpARatio->Draw("Psame");
 
   /* draw b-jet RpA */
   RpA_SystErr_bin0->SetLineWidth(1);
   RpA_SystErr_bin0->SetFillStyle(1001);
-  RpA_SystErr_bin0->SetFillColor(TColor::GetColor("#ba8a98"));
+  RpA_SystErr_bin0->SetFillColor(TColor::GetColor("#66FFFF"));
   RpA_SystErr_bin0->Draw("5 same");
   RpA_SystErr_bin1->SetLineWidth(1);
   RpA_SystErr_bin1->SetFillStyle(1001);
-  RpA_SystErr_bin1->SetFillColor(TColor::GetColor("#ba8a98"));
+  RpA_SystErr_bin1->SetFillColor(TColor::GetColor("#66FFFF"));
   RpA_SystErr_bin1->Draw("5 same");
   RpA_SystErr_bin2->SetLineWidth(1);
   RpA_SystErr_bin2->SetFillStyle(1001);
-  RpA_SystErr_bin2->SetFillColor(TColor::GetColor("#ba8a98"));
+  RpA_SystErr_bin2->SetFillColor(TColor::GetColor("#66FFFF"));
   RpA_SystErr_bin2->Draw("5 same");
   RpA_SystErr_bin3->SetLineWidth(1);
   RpA_SystErr_bin3->SetFillStyle(1001);
-  RpA_SystErr_bin3->SetFillColor(TColor::GetColor("#ba8a98"));
+  RpA_SystErr_bin3->SetFillColor(TColor::GetColor("#66FFFF"));
   RpA_SystErr_bin3->Draw("5 same");
   RpA_SystErr_bin4->SetLineWidth(1);
   RpA_SystErr_bin4->SetFillStyle(1001);
-  RpA_SystErr_bin4->SetFillColor(TColor::GetColor("#ba8a98"));
+  RpA_SystErr_bin4->SetFillColor(TColor::GetColor("#66FFFF"));
   RpA_SystErr_bin4->Draw("5 same");
   RpA_SystErr_bin5->SetLineWidth(1);
   RpA_SystErr_bin5->SetFillStyle(1001);
-  RpA_SystErr_bin5->SetFillColor(TColor::GetColor("#ba8a98"));
+  RpA_SystErr_bin5->SetFillColor(TColor::GetColor("#66FFFF"));
   RpA_SystErr_bin5->Draw("5 same");
   RpA_SystErr_bin6->SetLineWidth(1);
   RpA_SystErr_bin6->SetFillStyle(1001);
-  RpA_SystErr_bin6->SetFillColor(TColor::GetColor("#ba8a98"));
+  RpA_SystErr_bin6->SetFillColor(TColor::GetColor("#66FFFF"));
   RpA_SystErr_bin6->Draw("5 same");
   RpA->Draw("same");
 
   /* draw b-jet RAA */
   p8860_d10x1y1->SetFillStyle(1001);
-  p8860_d10x1y1->SetFillColor(TColor::GetColor("#33ccff"));
+  p8860_d10x1y1->SetFillColor(TColor::GetColor("#CCCCCC"));
   p8860_d10x1y1->Draw("5 same");
   points->Draw("PE same");
 
@@ -131,12 +129,12 @@ void bcjetRAA(int version = 0)
   toptext->SetTextSize(toptext->GetTextSize()*1.05);
   toptext->Draw("same");
 
-  TLatex * cms = new TLatex( 0.25, 0.88, Form("#font[22]{CMS}"));
+  TLatex * cms = new TLatex( 0.25, 0.88, Form("#font[62]{CMS}"));
   cms->SetNDC(1);
   cms->SetTextSize(cms->GetTextSize()*1.21);
   cms->Draw("same");
   
-  TLatex * prelim = new TLatex( 0.35, 0.88, Form("#font[32]{Preliminary}"));
+  TLatex * prelim = new TLatex( 0.35, 0.88, Form("#font[72]{Preliminary}"));
   prelim->SetNDC(1);
   prelim->SetTextSize(prelim->GetTextSize()*1.21);
   prelim->SetTextColor(TColor::GetColor("#8E0000"));
@@ -164,11 +162,11 @@ void bcjetRAA(int version = 0)
   float legend_text_size=0.032;
   
   /* draw c-jet RpA */
-  TLegendEntry *e_cjetrpa=leg->AddEntry("cjetrpa","c-jet RpA Data/PYTHIA Z2","lpf");
-  e_cjetrpa->SetFillColor(TColor::GetColor("#00FF60"));
+  TLegendEntry *e_cjetrpa=leg->AddEntry("cjetrpa","c-jet R_{pA} Data/PYTHIA Z2","lpf");
+  e_cjetrpa->SetFillColor(TColor::GetColor("#ba8a98"));
   e_cjetrpa->SetFillStyle(1001);
   e_cjetrpa->SetTextSize(legend_text_size);
-  e_cjetrpa->SetTextFont(22);
+  e_cjetrpa->SetTextFont(42);
   e_cjetrpa->SetTextColor(TColor::GetColor("#8E0000"));
   e_cjetrpa->SetLineColor(1);
   e_cjetrpa->SetLineStyle(1);
@@ -177,11 +175,11 @@ void bcjetRAA(int version = 0)
   e_cjetrpa->SetMarkerSize(1);
 
   /* draw b-jet RpA */
-  TLegendEntry *e_bjetrpa=leg->AddEntry("bjetrpa","b-jet RpA Data/PYTHIA Z2","lpf");
-  e_bjetrpa->SetFillColor(TColor::GetColor("#ba8a98"));
+  TLegendEntry *e_bjetrpa=leg->AddEntry("bjetrpa","b-jet R_{pA} Data/PYTHIA Z2","lpf");
+  e_bjetrpa->SetFillColor(TColor::GetColor("#66FFFF"));
   e_bjetrpa->SetFillStyle(1001);
   e_bjetrpa->SetTextSize(legend_text_size);
-  e_bjetrpa->SetTextFont(22);
+  e_bjetrpa->SetTextFont(42);
   e_bjetrpa->SetTextColor(TColor::GetColor("#8E0000"));
   e_bjetrpa->SetLineColor(1);
   e_bjetrpa->SetLineStyle(1);
@@ -190,11 +188,11 @@ void bcjetRAA(int version = 0)
   e_bjetrpa->SetMarkerSize(1);
   
   /* draw b-jet RAA */
-  TLegendEntry *e_bjetraa=leg->AddEntry("bjetraa","b-jet RAA","lpf");
-  e_bjetraa->SetFillColor(TColor::GetColor("#33ccff"));
+  TLegendEntry *e_bjetraa=leg->AddEntry("bjetraa","b-jet R_{AA}","lpf");
+  e_bjetraa->SetFillColor(TColor::GetColor("#CCCCCC"));
   e_bjetraa->SetFillStyle(1001);
   e_bjetraa->SetTextSize(legend_text_size);
-  e_bjetraa->SetTextFont(22);
+  e_bjetraa->SetTextFont(42);
   e_bjetraa->SetLineColor(1);
   e_bjetraa->SetLineStyle(1);
   e_bjetraa->SetLineWidth(1);
@@ -206,7 +204,7 @@ void bcjetRAA(int version = 0)
   e_lumiuncert->SetFillColor(TColor::GetColor("#006600"));
   e_lumiuncert->SetFillStyle(1001);
   e_lumiuncert->SetTextSize(legend_text_size);
-  e_lumiuncert->SetTextFont(22);
+  e_lumiuncert->SetTextFont(42);
   e_lumiuncert->SetLineWidth(0);
   e_lumiuncert->SetMarkerStyle(kFullCircle);
   e_lumiuncert->SetMarkerSize(1);
@@ -216,7 +214,7 @@ void bcjetRAA(int version = 0)
   e_refuncert->SetFillColor(TColor::GetColor("#ff6666"));
   e_refuncert->SetFillStyle(1001);
   e_refuncert->SetTextSize(legend_text_size);
-  e_refuncert->SetTextFont(22);
+  e_refuncert->SetTextFont(42);
   e_refuncert->SetLineWidth(0);
   e_refuncert->SetMarkerStyle(kFullCircle);
   e_refuncert->SetMarkerSize(1);
