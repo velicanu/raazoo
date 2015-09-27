@@ -32,7 +32,7 @@ void mesonRAA(int version = 0)
   /*** Get data points ***/
   /* D meson RAA */
   // TFile *_file0 = TFile::Open("PromptRAA_D0_PbPb_spectrum_fonll_effunpre_cent0to100_ptbin12_y1_dataplusfonll.root");
-  TFile *_file0 = TFile::Open("PromptRAA_D0_PbPb_spectrum_fonll_effunpre_cent0to10_ptbin12_y1_dataplusfonll.root.root");
+  TFile *_file0 = TFile::Open("PromptRAA_D0_PbPb_spectrum_fonll_effunpre_cent0to10_ptbin12_y1_dataplusfonll.root");
   TGraphAsymmErrors * D0_fonll_raa_errorsys = (TGraphAsymmErrors*)_file0->Get("D0_fonll_raa_errorsys");
   TGraphAsymmErrors * D0_fonll_raa_errorfonll = (TGraphAsymmErrors*)_file0->Get("D0_fonll_raa_errorfonll");
   TGraphAsymmErrors * D0_fonll_raa_errordata = (TGraphAsymmErrors*)_file0->Get("D0_fonll_raa_errordata");
@@ -117,16 +117,7 @@ void mesonRAA(int version = 0)
   
   /*** Draw Points ***/
 
-  /* draw D0 RAA */
-  D0_fonll_raa_errorsys->SetMarkerStyle(kFullSquare);
-  D0_fonll_raa_errorfonll->SetFillStyle(1001);
-  D0_fonll_raa_errorfonll->SetLineWidth(1);
-  D0_fonll_raa_errorfonll->SetFillColor(TColor::GetColor("#00FF60"));
-  D0_fonll_raa_errorfonll->Draw("5same");
-  D0_fonll_raa_errorsys->Draw("Psame");
-  // D0_fonll_raa_errordata_dataextraref->Draw("Psame");
-  // D0_fonll_raa_errordata_FONLLref->Draw("Psame");
-
+  
   /* draw hadron RAA */
   hadronRaa->SetMarkerStyle(kFullSquare);
   hadronRaaSyst->SetFillStyle(1001);
@@ -152,6 +143,16 @@ void mesonRAA(int version = 0)
   bp_syst->SetFillColor(TColor::GetColor("#ffbf00"));
   bp_syst->Draw("5 same");
   bp_stat->Draw("PE same");
+
+  /* draw D0 RAA */
+  D0_fonll_raa_errorsys->SetMarkerStyle(kFullSquare);
+  D0_fonll_raa_errorfonll->SetFillStyle(1001);
+  D0_fonll_raa_errorfonll->SetLineWidth(1);
+  D0_fonll_raa_errorfonll->SetFillColor(TColor::GetColor("#00FF60"));
+  D0_fonll_raa_errorfonll->Draw("5same");
+  D0_fonll_raa_errorsys->Draw("Psame");
+  // D0_fonll_raa_errordata_dataextraref->Draw("Psame");
+  // D0_fonll_raa_errordata_FONLLref->Draw("Psame");
 
   TLatex * toptext = new TLatex( 0.23, 0.955, Form("150 #mub^{-1} (PbPb 2.76 TeV), 35 nb^{-1} (pPb 5.02 TeV)"));
   toptext->SetNDC(1);
@@ -194,7 +195,7 @@ void mesonRAA(int version = 0)
   float legend_text_size=0.032;
 
   /* legend for D meson RAA */
-  TLegendEntry *e_dmesonraa=leg->AddEntry("dmesonraa","D meson (0-100%)","lpf");
+  TLegendEntry *e_dmesonraa=leg->AddEntry("dmesonraa","D meson (0-10%)","lpf");
   e_dmesonraa->SetFillColor(TColor::GetColor("#00FF60"));
   e_dmesonraa->SetTextColor(TColor::GetColor("#8E0000"));
   e_dmesonraa->SetTextFont(42);
@@ -219,7 +220,7 @@ void mesonRAA(int version = 0)
   e_hadronraa->SetMarkerSize(1);
   
   /* legend for B meson RAA */
-  TLegendEntry *e_bsraa=leg->AddEntry("bsraa","Bs R_{pA}","lpf");
+  TLegendEntry *e_bsraa=leg->AddEntry("bsraa","B_{s}^{0} R_{pA}","lpf");
   e_bsraa->SetFillColor(TColor::GetColor("#ff88ff"));
   e_bsraa->SetTextFont(42);
   e_bsraa->SetTextSize(legend_text_size);
@@ -230,7 +231,7 @@ void mesonRAA(int version = 0)
   e_bsraa->SetMarkerStyle(kFullCircle);
   e_bsraa->SetMarkerSize(1);
   
-  TLegendEntry *e_b0raa=leg->AddEntry("b0raa","B0 R_{pA}","lpf");
+  TLegendEntry *e_b0raa=leg->AddEntry("b0raa","B_{0} R_{pA}","lpf");
   e_b0raa->SetFillColor(TColor::GetColor("#ba8a98"));
   e_b0raa->SetTextFont(42);
   e_b0raa->SetTextSize(legend_text_size);
@@ -241,7 +242,7 @@ void mesonRAA(int version = 0)
   e_b0raa->SetMarkerStyle(kFullCircle);
   e_b0raa->SetMarkerSize(1);
   
-  TLegendEntry *e_bpraa=leg->AddEntry("bpraa","B+ R_{pA}","lpf");
+  TLegendEntry *e_bpraa=leg->AddEntry("bpraa","B_{+} R_{pA}","lpf");
   e_bpraa->SetFillColor(TColor::GetColor("#ffbf00"));
   e_bpraa->SetTextFont(42);
   e_bpraa->SetTextSize(legend_text_size);
